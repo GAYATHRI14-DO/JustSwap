@@ -1,0 +1,6 @@
+{
+  "name": "JustSwap",
+  "description": "Real-time physical item swapping platform with condition verification, chat, Google authentication, and admin panel.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

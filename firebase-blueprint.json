@@ -1,0 +1,152 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile with registration and contact status",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "email": { "type": "string" },
+        "name": { "type": "string", "maxLength": 100 },
+        "whatsappNumber": { "type": "string", "maxLength": 30 },
+        "photoURL": { "type": "string" },
+        "isRegistered": { "type": "boolean" },
+        "isAdmin": { "type": "boolean" },
+        "bio": { "type": "string", "maxLength": 500 },
+        "location": { "type": "string", "maxLength": 100 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "email", "isRegistered"]
+    },
+    "Item": {
+      "title": "Item",
+      "description": "Physical item listed for swapping with verification photos and condition metadata",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "ownerId": { "type": "string" },
+        "ownerName": { "type": "string", "maxLength": 100 },
+        "ownerPhoto": { "type": "string" },
+        "ownerWhatsapp": { "type": "string", "maxLength": 30 },
+        "title": { "type": "string", "maxLength": 150 },
+        "description": { "type": "string", "maxLength": 2000 },
+        "category": { "type": "string", "maxLength": 50 },
+        "condition": { "type": "string", "maxLength": 50 },
+        "conditionNotes": { "type": "string", "maxLength": 1000 },
+        "verificationTags": { "type": "array" },
+        "photos": { "type": "array" },
+        "estimatedValue": { "type": "number" },
+        "swapWishlist": { "type": "string", "maxLength": 250 },
+        "location": { "type": "string", "maxLength": 100 },
+        "status": { "type": "string", "enum": ["active", "pending_swap", "swapped", "archived"] },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "ownerId", "title", "category", "condition", "status"]
+    },
+    "SwapOffer": {
+      "title": "SwapOffer",
+      "description": "Swap offer proposed by a user for another user's item",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "requesterId": { "type": "string" },
+        "requesterName": { "type": "string", "maxLength": 100 },
+        "requesterPhoto": { "type": "string" },
+        "requesterWhatsapp": { "type": "string", "maxLength": 30 },
+        "receiverId": { "type": "string" },
+        "receiverName": { "type": "string", "maxLength": 100 },
+        "receiverPhoto": { "type": "string" },
+        "receiverWhatsapp": { "type": "string", "maxLength": 30 },
+        "targetItemId": { "type": "string" },
+        "targetItemTitle": { "type": "string", "maxLength": 150 },
+        "targetItemPhoto": { "type": "string" },
+        "offeredItemIds": { "type": "array" },
+        "offeredItemsSummary": { "type": "string", "maxLength": 500 },
+        "offeredPhotos": { "type": "array" },
+        "message": { "type": "string", "maxLength": 1000 },
+        "cashAdjustment": { "type": "number" },
+        "status": { "type": "string", "enum": ["pending", "accepted", "rejected", "completed", "cancelled"] },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "requesterId", "receiverId", "targetItemId", "status"]
+    },
+    "Chat": {
+      "title": "Chat",
+      "description": "Direct conversation channel between two swappers",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "participantIds": { "type": "array" },
+        "participantDetails": { "type": "object" },
+        "lastMessage": { "type": "string", "maxLength": 500 },
+        "lastMessageTime": { "type": "string" },
+        "relatedItemId": { "type": "string" },
+        "relatedItemTitle": { "type": "string", "maxLength": 150 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "participantIds"]
+    },
+    "ChatMessage": {
+      "title": "ChatMessage",
+      "description": "Message in a chat conversation",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "chatId": { "type": "string" },
+        "senderId": { "type": "string" },
+        "senderName": { "type": "string", "maxLength": 100 },
+        "senderPhoto": { "type": "string" },
+        "text": { "type": "string", "maxLength": 2000 },
+        "photoUrl": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "chatId", "senderId"]
+    },
+    "Report": {
+      "title": "Report",
+      "description": "Moderation report created by user for spam or fraud",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "reporterId": { "type": "string" },
+        "targetType": { "type": "string" },
+        "targetId": { "type": "string" },
+        "reason": { "type": "string", "maxLength": 200 },
+        "description": { "type": "string", "maxLength": 1000 },
+        "status": { "type": "string", "enum": ["open", "reviewed", "dismissed"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "reporterId", "targetType", "targetId", "reason", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "User profile with contact and registration info"
+    },
+    "/items/{itemId}": {
+      "schema": { "$ref": "#/entities/Item" },
+      "description": "Physical items listed for swapping"
+    },
+    "/swapOffers/{swapId}": {
+      "schema": { "$ref": "#/entities/SwapOffer" },
+      "description": "Swap proposals exchanged between users"
+    },
+    "/chats/{chatId}": {
+      "schema": { "$ref": "#/entities/Chat" },
+      "description": "Chat channels"
+    },
+    "/chats/{chatId}/messages/{messageId}": {
+      "schema": { "$ref": "#/entities/ChatMessage" },
+      "description": "Messages inside a chat"
+    },
+    "/reports/{reportId}": {
+      "schema": { "$ref": "#/entities/Report" },
+      "description": "User reports for moderation"
+    }
+  }
+}
