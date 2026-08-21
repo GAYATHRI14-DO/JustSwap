@@ -1,27 +1,5 @@
 # JustSwap
 
-<p align="center">
-  <img src="assets/justswap-logo.png" alt="JustSwap Logo" width="320">
-</p>
-
-<p align="center">
-  <strong>Swap what you have. Find what you need.</strong>
-</p>
-
-<p align="center">
-  A modern item-swapping platform that makes it easy to exchange things with other people.
-</p>
-
-<p align="center">
-  <a href="https://github.com/GAYATHRI14-DO/JustSwap">GitHub</a>
-  •
-  <a href="#features">Features</a>
-  •
-  <a href="#how-it-works">How It Works</a>
-  •
-  <a href="#getting-started">Getting Started</a>
-</p>
-
 ---
 
 ## ✨ What is JustSwap?
