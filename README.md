@@ -1,5 +1,11 @@
 # JustSwap
 
+<p align="center">
+  <a href="https://just-swap-eight.vercel.app/">
+    <strong>🌐 Visit JustSwap</strong>
+  </a>
+</p>
+
 ---
 
 ## ✨ What is JustSwap?
@@ -79,16 +85,6 @@ Chat with the other user and finalize the exchange.
 
 ---
 
-## 🖥️ Preview
-
-<p align="center">
-  <img src="assets/justswap-preview.png" alt="JustSwap Website Preview" width="850">
-</p>
-
-> Replace `assets/justswap-preview.png` with a screenshot of your actual website homepage.
-
----
-
 ## 🛠️ Tech Stack
 
 ### Frontend
@@ -117,9 +113,6 @@ Chat with the other user and finalize the exchange.
 JustSwap/
 │
 ├── assets/
-│   ├── justswap-logo.png
-│   └── justswap-preview.png
-│
 ├── src/
 │   ├── components/
 │   ├── context/
